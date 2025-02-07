@@ -50,6 +50,6 @@ final class ZohoApiService implements ExternalApiServiceInterface
 
     public function getTokenFromCache(): string
     {
-        return Cache::get(self::ZOHO_CACHE_KEY) ?? 'empty token';
+        return Cache::get(self::ZOHO_CACHE_KEY) ?? $this->refreshTokenFromApi();
     }
 }
