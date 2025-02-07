@@ -5,6 +5,11 @@ ARG GROUP_ID
 
 USER root
 
+# Install Node.js 18
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    node -v && npm -v
+
 RUN if [ ${USER_ID} -ne 0 ] && [ ${GROUP_ID} -ne 0 ]; then \
     userdel -f laradock &&\
     if getent group laradock ; then groupdel laradock; fi &&\
