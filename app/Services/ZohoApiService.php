@@ -6,6 +6,7 @@ use App\Contracts\ExternalApiServiceInterface;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Request;
 
 final class ZohoApiService implements ExternalApiServiceInterface
 {
@@ -51,5 +52,38 @@ final class ZohoApiService implements ExternalApiServiceInterface
     public function getTokenFromCache(): string
     {
         return Cache::get(self::ZOHO_CACHE_KEY) ?? $this->refreshTokenFromApi();
+    }
+
+    public function createAccount(Request $request): string
+    {
+        $oauth_token = 'Zoho-oauthtoken ' . $this->getTokenFromCache();
+        $data = [
+            'data' => [[
+                'Account_Name' => $request->get('name'),
+                'Website' => $request->get('website'),
+                'Phone' => $request->get('phone')
+            ]]
+        ];
+
+        return Http::withHeaders(['Authorization' => $oauth_token])
+            ->post(config('api.zoho.api_domain') . '/crm/v7/Accounts', $data);
+    }
+
+    public function createDeal(Request $request): string
+    {
+        $oauth_token = 'Zoho-oauthtoken ' . $this->getTokenFromCache();
+        $data = [
+            'data' => [[
+                'Deal_Name' => $request->get('name'),
+                'Account_Name' => [
+                    'id' => $request->get('account_id')
+                ],
+                'Stage' => $request->get('stage'),
+                'Close_Date' => now()->addWeeks(2)->format('Y-m-d')
+            ]]
+        ];
+
+        return Http::withHeaders(['Authorization' => $oauth_token])
+            ->post(config('api.zoho.api_domain') . '/crm/v7/Deals', $data);
     }
 }
