@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary w-100 btn-lg">
         {{ label }}
     </button>
 </template>

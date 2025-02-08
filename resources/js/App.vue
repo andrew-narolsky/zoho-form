@@ -78,6 +78,7 @@ const submitForm = async () => {
         <form @submit.prevent="submitForm">
             <AccountForm :account="account" :errors="errors" />
             <DealForm :deal="deal" :errors="errors" />
+            <p>* Fields marked with an asterisk are required.</p>
             <SubmitButton label="Submit form" />
         </form>
     </div>
@@ -85,8 +86,11 @@ const submitForm = async () => {
 <style scoped>
     h1 {
         margin-bottom: 20px;
+        text-align: center;
     }
     form {
+        margin: 0 auto;
+        max-width: 500px;
         padding: 30px;
         box-sizing: border-box;
         background-color: rgba(255,255,255,.3);

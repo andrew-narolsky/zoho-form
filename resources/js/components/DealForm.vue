@@ -2,10 +2,18 @@
 import { defineProps } from 'vue'
 import InputField from '../ui/InputField.vue'
 
-defineProps({
+const props = defineProps({
     deal: Object,
     errors: Object
 })
+
+defineEmits(['clearError'])
+
+const clearError = (field) => {
+    if (props.errors[field]) {
+        props.errors[field] = ''
+    }
+}
 </script>
 
 <template>
@@ -13,12 +21,14 @@ defineProps({
         <InputField
             v-model="deal.name"
             :error="errors.deal_name"
-            label="Deal name"
+            @clearError="clearError('deal_name')"
+            label="Deal name*"
             id="deal_name" />
         <InputField
             v-model="deal.stage"
             :error="errors.deal_stage"
-            label="Deal stage"
+            @clearError="clearError('deal_stage')"
+            label="Deal stage*"
             id="deal_stage" />
     </div>
 </template>
