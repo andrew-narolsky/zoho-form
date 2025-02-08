@@ -1,6 +1,7 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue'
+import { useHead } from '@vueuse/head'
 
 import AccountForm from './components/AccountForm.vue'
 import DealForm from './components/DealForm.vue'
@@ -9,6 +10,16 @@ import SubmitButton from './ui/SubmitButton.vue'
 import { validateAccountForm } from './utils/validateAccountForm'
 import { validateDealForm } from './utils/validateDealForm'
 import Toast from './utils/toast'
+
+useHead({
+    title: 'Zoho Form',
+    meta: [
+        { name: 'description', content: 'Submit your Zoho account and deal details easily.' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { property: 'og:title', content: 'Zoho Form Submission' },
+        { property: 'og:description', content: 'Fill out the form to create an account and deal in Zoho.' }
+    ]
+})
 
 const account = ref({
     name: '',
