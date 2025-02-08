@@ -51,7 +51,8 @@ const submitForm = async () => {
             return axios.post('/api/create-deal', dealData)
         })
         .then(dealResponse => {
-            account.value = deal.value = {}
+            account.value = { name: '', website: '', phone: '' }
+            deal.value = { name: '', stage: '' }
 
             Toast.fire({
                 icon: 'success',
@@ -83,6 +84,14 @@ const submitForm = async () => {
 </template>
 <style scoped>
     h1 {
-        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    form {
+        padding: 30px;
+        box-sizing: border-box;
+        background-color: rgba(255,255,255,.3);
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 1.411px 2.961px 0 rgba(20, 34, 74, .03), 0 3.392px 7.116px 0 rgba(20, 34, 74, .04), 0 6.386px 13.398px 0 rgba(20, 34, 74, .05), 0 11.392px 23.9px 0 rgba(20, 34, 74, .05);
     }
 </style>

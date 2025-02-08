@@ -28,3 +28,12 @@ const emit = defineEmits(['update:modelValue'])
         <span v-if="error" class="text-danger">{{ error }}</span>
     </div>
 </template>
+
+<style scoped>
+input {
+    border-color: transparent;
+}
+.text-danger {
+    font-size: 14px;
+}
+</style>

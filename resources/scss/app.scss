@@ -1,0 +1,12 @@
+body {
+    height: 100vh;
+    background: url("../images/blue-sky-background-and-white-clouds-vector-min.webp") center no-repeat;
+    background-size: cover;
+
+    #app {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+    }
+}

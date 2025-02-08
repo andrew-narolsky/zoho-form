@@ -1,5 +1,6 @@
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../scss/app.scss'
 
 import axios from 'axios'
 window.axios = axios
