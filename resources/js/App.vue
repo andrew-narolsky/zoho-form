@@ -73,7 +73,8 @@ const submitForm = async () => {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container" data-aos="zoom-in-down"
+         data-aos-easing="ease-out-cubic">
         <h1>Zoho Form</h1>
         <form @submit.prevent="submitForm">
             <AccountForm :account="account" :errors="errors" />
