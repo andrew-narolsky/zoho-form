@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import InputField from '../ui/InputField.vue'
 
 const props = defineProps({
